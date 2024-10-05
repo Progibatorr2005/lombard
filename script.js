@@ -25,9 +25,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-
-
-
 document.addEventListener("DOMContentLoaded", function() {
     const navButtons = document.querySelectorAll(".nav-button");
 
@@ -36,7 +33,12 @@ document.addEventListener("DOMContentLoaded", function() {
             const scrollToId = button.getAttribute("data-scroll-to");
             const section = document.querySelector(scrollToId);
             if (section) {
-                section.scrollIntoView({ behavior: "smooth" });
+                // Получаем верхнюю позицию секции и вычитаем 88 пикселей
+                const offsetPosition = section.getBoundingClientRect().top + window.pageYOffset - 88;
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth" // Плавная прокрутка
+                });
             }
 
             // Remove active class from all buttons and add to the clicked button
