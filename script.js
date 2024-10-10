@@ -21,3 +21,31 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const faqItems = document.querySelectorAll(".faq-item");
+
+    faqItems.forEach(item => {
+        const question = item.querySelector(".faq-question");
+
+        question.addEventListener("click", function() {
+            const isActive = item.classList.contains("active");
+
+            // Close all open items
+            faqItems.forEach(i => {
+                i.classList.remove("active");
+                i.querySelector(".faq-answer").style.maxHeight = null;
+                i.querySelector(".faq-icon").textContent = "+";
+            });
+
+            // Toggle the clicked item
+            if (!isActive) {
+                item.classList.add("active");
+                const answer = item.querySelector(".faq-answer");
+                answer.style.maxHeight = answer.scrollHeight + "px";
+                item.querySelector(".faq-icon").textContent = "×"; // Change to cross
+            }
+        });
+    });
+});
